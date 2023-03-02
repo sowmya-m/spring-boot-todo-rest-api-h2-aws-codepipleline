@@ -1,0 +1,55 @@
+version: 0.2
+
+
+        
+phases:
+  install:
+    on-failure: ABORT | CONTINUE
+    runtime-versions:
+      java: openjdk8
+    commands:
+      - echo install
+      - command
+  pre_build:
+    on-failure: ABORT | CONTINUE
+    commands:
+      - echo pre_build
+      - command
+  build:
+    on-failure: ABORT | CONTINUE
+    commands:
+      - mvn package
+      - echo build
+  post_build:
+    on-failure: ABORT | CONTINUE
+    commands:
+      - echo postbuild
+reports:
+  report-group-name-or-arn:
+    files:
+      - location
+      - location
+    base-directory: location
+    discard-paths: no | yes
+    file-format: report-format
+artifacts:
+  files:
+    - location
+    - location
+  name: artifact-name
+  discard-paths: no | yes
+  base-directory: location
+  exclude-paths: excluded paths
+  enable-symlinks: no | yes
+  s3-prefix: prefix
+  secondary-artifacts:
+    artifactIdentifier:
+      files:
+        - target\spring-boot-todo-rest-api-h2-aws-codepipeline-0.0.1-SNAPSHOT.jar
+      name: secondary-artifact-name
+      discard-paths: no | yes
+      base-directory: location
+cache:
+  paths:
+    - path
+    - path
